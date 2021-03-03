@@ -3,6 +3,7 @@ import 'package:comandas/backend/scopedModel/usuarioModel.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+// ignore: must_be_immutable
 class CardapioBancao extends StatefulWidget {
 
   String cliente;
@@ -37,6 +38,7 @@ class _CardapioBancaoState extends State<CardapioBancao> {
                       List<dynamic> categorias = List();
                       categorias = snapshot.data['categorias'];
                       return Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
                        children: categorias.map((e) => Column(
                            children: [
                              Padding(
@@ -61,32 +63,39 @@ class _CardapioBancaoState extends State<CardapioBancao> {
                                        }                  
                                      } 
                                    return Column(
+                                     crossAxisAlignment: CrossAxisAlignment.start,                                    
                                      children: cardapio.map((c) => GestureDetector(
                                               child: Card(
                                                 child: Padding(
                                                  padding: const EdgeInsets.all(16.0),
-                                                 child: Column(
-                                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                                 child: Row(
                                                    children: [
-                                                     Text(c['nome'].toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 16,
-                                                       ),
-                                                      ),
-                                                     SizedBox(
-                                                       height: 8,
-                                                     ),
-                                                     Text(c['detalhe'].toString(),
-                                                       style: TextStyle(
-                                                         fontSize: 13,
-                                                       ),
-                                                     ),
-                                                     SizedBox(
-                                                       height: 8,
-                                                     ),
-                                                     Text('R\$ ' + c['valor'].toString(),
-                                                       style: TextStyle(
-                                                         fontSize: 14
+                                                     Expanded(
+                                                       child: Column(
+                                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                                         children: [
+                                                           Text(c['nome'].toString(),
+                                                            style: TextStyle(
+                                                              fontSize: 16,
+                                                             ),
+                                                            ),
+                                                           SizedBox(
+                                                             height: 8,
+                                                           ),
+                                                           Text(c['detalhe'].toString(),
+                                                             style: TextStyle(
+                                                               fontSize: 13,
+                                                             ),
+                                                           ),
+                                                           SizedBox(
+                                                             height: 8,
+                                                           ),
+                                                           Text('R\$ ' + c['valor'].toString(),
+                                                             style: TextStyle(
+                                                               fontSize: 14
+                                                             ),
+                                                           ),
+                                                         ],
                                                        ),
                                                      ),
                                                    ],

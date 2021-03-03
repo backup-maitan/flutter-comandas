@@ -1,8 +1,8 @@
 import 'package:comandas/backend/scopedModel/usuarioModel.dart';
-import 'package:comandas/frontend/telasAdministrativo/itensCategoria.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+// ignore: must_be_immutable
 class NovoItemCardapio extends StatefulWidget {
 
   List<dynamic> categorias;
@@ -65,6 +65,7 @@ class _NovoItemCardapioState extends State<NovoItemCardapio> {
                         decoration: InputDecoration(                   
                           labelText: 'nome',
                         ),
+                       // ignore: missing_return
                        validator: (value){
                          if(value.isEmpty)
                           return 'insira o nome do item';
@@ -99,6 +100,7 @@ class _NovoItemCardapioState extends State<NovoItemCardapio> {
                         decoration: InputDecoration(                   
                           labelText: 'detalhe',
                         ),
+                       // ignore: missing_return
                        validator: (value){
                          if(value.isEmpty)
                           return 'insira o detalhe do item';
@@ -114,6 +116,7 @@ class _NovoItemCardapioState extends State<NovoItemCardapio> {
                         decoration: InputDecoration(                   
                           labelText: 'valor',
                         ),
+                       // ignore: missing_return
                        validator: (value){
                          if(value.isEmpty){
                           return 'insira o valor do item';

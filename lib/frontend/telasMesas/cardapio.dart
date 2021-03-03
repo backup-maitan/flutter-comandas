@@ -66,28 +66,34 @@ class _CardapioState extends State<Cardapio> {
                                               child: Card(
                                                 child: Padding(
                                                  padding: const EdgeInsets.all(16.0),
-                                                 child: Column(
-                                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                                 child: Row(
                                                    children: [
-                                                     Text(c['nome'].toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 16,
-                                                       ),
-                                                      ),
-                                                     SizedBox(
-                                                       height: 8,
-                                                     ),
-                                                     Text(c['detalhe'].toString(),
-                                                       style: TextStyle(
-                                                         fontSize: 13,
-                                                       ),
-                                                     ),
-                                                     SizedBox(
-                                                       height: 8,
-                                                     ),
-                                                     Text('R\$ ' + c['valor'].toString(),
-                                                       style: TextStyle(
-                                                         fontSize: 14
+                                                     Expanded(
+                                                        child: Column(
+                                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                                         children: [
+                                                           Text(c['nome'].toString(),
+                                                            style: TextStyle(
+                                                              fontSize: 16,
+                                                             ),
+                                                            ),
+                                                           SizedBox(
+                                                             height: 8,
+                                                           ),
+                                                           Text(c['detalhe'].toString(),
+                                                             style: TextStyle(
+                                                               fontSize: 13,
+                                                             ),
+                                                           ),
+                                                           SizedBox(
+                                                             height: 8,
+                                                           ),
+                                                           Text('R\$ ' + c['valor'].toString(),
+                                                             style: TextStyle(
+                                                               fontSize: 14
+                                                             ),
+                                                           ),
+                                                         ],
                                                        ),
                                                      ),
                                                    ],

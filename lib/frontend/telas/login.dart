@@ -37,6 +37,7 @@ class _LoginState extends State<Login> {
                     decoration: InputDecoration(                   
                       labelText: 'email'
                     ),
+                     // ignore: missing_return
                      validator: (value){
                       if(value.isEmpty || !value.contains('@')){
                         return 'insira um email valido';
@@ -49,6 +50,7 @@ class _LoginState extends State<Login> {
                     decoration: InputDecoration(
                       labelText: 'senha'
                     ),
+                     // ignore: missing_return
                      validator: (value){
                       if(value.isEmpty || value.length < 6){
                         return 'insira a senha com o minino de 6 digitos';

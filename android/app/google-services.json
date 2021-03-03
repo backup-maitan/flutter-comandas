@@ -7,20 +7,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:423251042062:android:3428b820659ee00cd5815f",
+        "mobilesdk_app_id": "1:423251042062:android:d99dcd029c74f875d5815f",
         "android_client_info": {
           "package_name": "br.com.comandas"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "423251042062-ha92pe5phmvthu1dd8md68mjppjv3s7a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "br.com.comandas",
-            "certificate_hash": "3517ab66f1d5d1bcf6bdcc55af999459688fbf72"
-          }
-        },
         {
           "client_id": "423251042062-p1li5af5bkiim3kfrpc0afkaepbifcmo.apps.googleusercontent.com",
           "client_type": 3

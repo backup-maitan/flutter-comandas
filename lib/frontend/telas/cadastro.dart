@@ -34,6 +34,7 @@ class _CadastroState extends State<Cadastro> {
                     decoration: InputDecoration(                   
                       labelText: 'nome'
                     ),
+                    // ignore: missing_return
                     validator: (value){
                       if(value.isEmpty){
                         return 'insira o nome do restaurante';
@@ -46,6 +47,7 @@ class _CadastroState extends State<Cadastro> {
                     decoration: InputDecoration(                   
                       labelText: 'email'
                     ),
+                    // ignore: missing_return
                     validator: (value){
                       if(value.isEmpty || !value.contains('@')){
                         return 'insira um email valido';
@@ -58,6 +60,7 @@ class _CadastroState extends State<Cadastro> {
                     decoration: InputDecoration(
                       labelText: 'senha'
                     ),
+                    // ignore: missing_return
                     validator: (value){
                       if(value.isEmpty || value.length < 6){
                         return 'insira a senha com o minino de 6 digitos';

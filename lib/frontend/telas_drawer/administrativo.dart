@@ -46,7 +46,7 @@ class _AdministrativoState extends State<Administrativo> {
                         child: Padding(padding: EdgeInsets.all(16.0),
                           child: Row(
                             children: [
-                              Text('Numero de mesas',
+                              Text('número de mesas',
                                 style: TextStyle(
                                   fontSize: 18
                                 ),

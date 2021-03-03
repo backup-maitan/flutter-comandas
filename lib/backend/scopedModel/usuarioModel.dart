@@ -48,6 +48,9 @@ class UsuarioModel extends Model {
         'situacao' : 'livre',
         'mesa' : 1
       });
+      FirebaseFirestore.instance.collection('restaurantes').doc(uid).collection('balcao').doc('balcao').set({
+        'clientes' : List(),
+      });
       FirebaseFirestore.instance.collection('restaurantes').doc(uid).collection('categoria').doc('categoria').set({
         'categorias' : List(),
       });
@@ -129,6 +132,7 @@ class UsuarioModel extends Model {
                         color: Colors.grey
                       )
                     ),
+                    // ignore: missing_return
                     validator: (value){
                       if(value.isEmpty){
                         return 'insira o nome do cliente';
@@ -182,6 +186,7 @@ class UsuarioModel extends Model {
                         color: Colors.grey
                       )
                     ),
+                    // ignore: missing_return
                     validator: (value){
                       if(value.isEmpty){
                         return 'insira o nome do cliente';

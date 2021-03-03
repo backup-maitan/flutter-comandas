@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'novoItemCardapio.dart';
 
+// ignore: must_be_immutable
 class AlterarCardapio extends StatefulWidget {
 
   List<dynamic> categorias;

@@ -41,6 +41,7 @@ class _NovaCategoriaState extends State<NovaCategoria> {
                       decoration: InputDecoration(                   
                         labelText: 'categoria',
                       ),
+                      // ignore: missing_return
                       validator: (value){
                         if(value.isEmpty){
                           return 'insira o nome da categoria';

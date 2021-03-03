@@ -18,6 +18,7 @@ void main() {
             buttonColor: Color.fromRGBO(153, 0, 0, 1)
           ),
           debugShowCheckedModeBanner: false,
+          title: 'Comandas',
           home: MyApp(),
         )
       )

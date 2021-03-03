@@ -3,6 +3,7 @@ import 'package:comandas/backend/scopedModel/usuarioModel.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+// ignore: must_be_immutable
 class CardPedido extends StatefulWidget {
 
   PedidoObjeto pedidoObjeto;

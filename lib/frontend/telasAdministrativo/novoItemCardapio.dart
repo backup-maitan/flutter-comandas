@@ -59,6 +59,10 @@ class _NovoItemCardapioState extends State<NovoItemCardapio> {
                   Container(
                     padding: EdgeInsets.all(16.0),
                       child: TextFormField(
+                        onFieldSubmitted: (_){
+                          if(_globalKey.currentState.validate())
+                           model.salvarNovoItemCardapio(context: context, nome: nome.text, categoria: categoria.text, detalhe: detalhe.text, valor: valor.text);
+                        },
                         autofocus: true,
                         keyboardType: TextInputType.text,
                         controller: nome,               
@@ -84,8 +88,13 @@ class _NovoItemCardapioState extends State<NovoItemCardapio> {
                                 setState(() {
                                   hint = valor;
                                   categoria.text = valor;
-                                });
-                              }
+                                });                               
+                              },
+                              // ignore: missing_return
+                              validator: (_){
+                                 if(categoria.text.isEmpty)
+                                 return 'escolha a categoria do item';
+                              },
                             ),
                           ),
                         ],
@@ -94,6 +103,10 @@ class _NovoItemCardapioState extends State<NovoItemCardapio> {
                   Container(
                     padding: EdgeInsets.all(16.0),
                       child: TextFormField(
+                        onFieldSubmitted: (_){
+                          if(_globalKey.currentState.validate())
+                           model.salvarNovoItemCardapio(context: context, nome: nome.text, categoria: categoria.text, detalhe: detalhe.text, valor: valor.text);
+                        },
                         autofocus: true,
                         keyboardType: TextInputType.text,
                         controller: detalhe,               
@@ -110,6 +123,10 @@ class _NovoItemCardapioState extends State<NovoItemCardapio> {
                   Container(
                     padding: EdgeInsets.all(16.0),
                       child: TextFormField(
+                        onFieldSubmitted: (_){
+                          if(_globalKey.currentState.validate())
+                           model.salvarNovoItemCardapio(context: context, nome: nome.text, categoria: categoria.text, detalhe: detalhe.text, valor: valor.text);
+                        },
                         autofocus: true,
                         keyboardType: TextInputType.number,
                         controller: valor,               
@@ -126,22 +143,6 @@ class _NovoItemCardapioState extends State<NovoItemCardapio> {
                        },
                       ),
                     ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RaisedButton(
-                        child: Text('Salvar item',
-                            style: TextStyle(
-                              color: Colors.white
-                            ),
-                          ),
-                        onPressed: (){
-                          if(_globalKey.currentState.validate())
-                           model.salvarNovoItemCardapio(context: context, nome: nome.text, categoria: categoria.text, detalhe: detalhe.text, valor: valor.text);
-                        }
-                      )
-                    ],
-                  )  
                 ],
               ),
               )

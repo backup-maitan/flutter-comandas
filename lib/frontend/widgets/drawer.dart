@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:comandas/backend/scopedModel/usuarioModel.dart';
+import 'package:comandas/frontend/telas_drawer/ajuda.dart';
 import 'package:comandas/frontend/telas_drawer/balcao.dart';
 import 'package:comandas/frontend/telas_drawer/caixa.dart';
 import 'package:comandas/frontend/telas_drawer/cozinha.dart';
@@ -90,6 +91,19 @@ class ItensDrawer extends StatelessWidget {
                        onTap: (){
                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Caixa()));
                     },
+                    ),
+                    Divider(
+                      color: Colors.grey[210],
+                    ),                  
+                    ListTile(
+                      title: Text('Ajuda',
+                        style: TextStyle(
+                         
+                        ),
+                      ),
+                       onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Ajuda()));
+                    },
                     ),                   
                     ListTile(
                       title: Text('Sair',
@@ -107,7 +121,7 @@ class ItensDrawer extends StatelessWidget {
         ),
       ),
     );
-      }
-    );
-  }
+   }
+  );
+ }
 }

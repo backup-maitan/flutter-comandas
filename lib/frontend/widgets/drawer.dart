@@ -4,6 +4,7 @@ import 'package:comandas/frontend/telas_drawer/ajuda.dart';
 import 'package:comandas/frontend/telas_drawer/balcao.dart';
 import 'package:comandas/frontend/telas_drawer/caixa.dart';
 import 'package:comandas/frontend/telas_drawer/cozinha.dart';
+import 'package:comandas/frontend/telas_drawer/estatistica.dart';
 import 'package:comandas/frontend/telas_drawer/mesas.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -21,9 +22,9 @@ class ItensDrawer extends StatelessWidget {
             Expanded(
             child: ListView(
                 children: [
-                    DrawerHeader(
-                          child: Container(
-                            height: 250.0,
+                    ListTile(                      
+                      title: Container(
+                            height: 100.0,
                             child: Container(
                               child: StreamBuilder(
                             stream: FirebaseFirestore.instance.collection('restaurantes').doc(model.uid).snapshots(),
@@ -33,25 +34,28 @@ class ItensDrawer extends StatelessWidget {
                                   child: CircularProgressIndicator(),
                                 );
                               }else{
-                                return  Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(bottom: 16.0),
-                                            child: Text(snapshot.data['nome'],
-                                              style: TextStyle(
-                                                fontSize: 18
-                                              ),
-                                            ),
-                                          ),                                       
-                                        ],
-                                      );
-                              }
-                            }),
-                            ),
-                          )                  
-                        ),                                     
+                                return Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(bottom: 16.0),
+                                        child: Text(snapshot.data['nome'],
+                                          style: TextStyle(
+                                            fontSize: 18
+                                          ),
+                                        ),
+                                      ),                                       
+                                    ],
+                                  );
+                            }
+                          }),
+                        ),
+                      )
+                    ),
+                    Divider(
+                      color: Colors.grey[210],
+                    ),                                 
                     ListTile(
                       title: Text('Mesas',
                         style: TextStyle(
@@ -91,6 +95,16 @@ class ItensDrawer extends StatelessWidget {
                        onTap: (){
                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Caixa()));
                     },
+                    ),
+                    ListTile(
+                      title: Text('Estatisticas',
+                        style: TextStyle(
+                         
+                        ),
+                      ),
+                       onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Estatistica()));
+                     },
                     ),
                     Divider(
                       color: Colors.grey[210],

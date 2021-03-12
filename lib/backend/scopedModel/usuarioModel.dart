@@ -5,6 +5,8 @@ import 'package:comandas/main.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 
 class UsuarioModel extends Model {
@@ -292,6 +294,7 @@ class UsuarioModel extends Model {
       'valor' : valor
     });
     Navigator.of(context).pop();
+    salvarEstatistica(pedido: pedido, quantidade: quantidade);
   }
 
   novoPedidoBalcao({@required BuildContext context , @required String cliente, @required int quantidade, @required String pedido, @required String detalhe, @required String observacao, @required double valor}){
@@ -309,6 +312,7 @@ class UsuarioModel extends Model {
       'valor' : valor
     });
     Navigator.of(context).pop();
+    salvarEstatistica(pedido: pedido, quantidade: quantidade);
   }
 
   inserirDetalhePedido({@required BuildContext context , @required String cliente, @required int mesa, @required String pedido, @required String detalhe, @required double valor, @required GlobalKey globalKey}){
@@ -703,5 +707,84 @@ class UsuarioModel extends Model {
 
   deletarItemCaixa({@required String idCliente, @required String idPedido}){
     FirebaseFirestore.instance.collection('restaurantes').doc(uid).collection('caixa').doc(idCliente).collection('pedidos').doc(idPedido).delete();
+  }
+
+  salvarEstatistica({@required String pedido, @required int quantidade}) async {
+
+      bool pedidoExiste = false;
+      int quantidadeExiste = 0;
+      int valor = 0;
+      int index = 0;
+      int indexRemover; 
+      List<dynamic> pedidos = List<dynamic>();
+
+      initializeDateFormatting('pt_BR');
+      var formatadorData = DateFormat('dd-MM-y');
+      String dataFormatada = formatadorData.format(DateTime.now());
+
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('restaurantes').doc(uid).collection('estatistica').orderBy('data').get();
+      for(DocumentSnapshot snapshot in querySnapshot.docs){
+        print(snapshot.id);
+      }
+
+      if(querySnapshot.docs.length >= 30){
+        FirebaseFirestore.instance.collection('restaurantes').doc(uid).collection('estatistica').doc(querySnapshot.docs[querySnapshot.docs.length - 1].id).delete();     
+      }
+
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('restaurantes').doc(uid).collection('estatistica').doc(dataFormatada).get();
+
+      if(documentSnapshot.exists){
+          pedidos = documentSnapshot.data()['pedidos'];
+
+          for(Map maps in pedidos){            
+            if( maps.keys.contains(pedido)){
+              print('pedido encontrado');
+              pedidoExiste = true;
+              quantidadeExiste = maps[pedido];
+              print('---' + quantidadeExiste.toString());
+              print('---' + index.toString());
+              indexRemover = index;
+             
+            }
+            else{
+              print('pedido não encontrado');
+            }
+            index = index +1;  
+          }
+
+          if(pedidoExiste == true){
+            print('contem o pedido na lista');
+            pedidos.removeAt(indexRemover);
+            valor = quantidadeExiste + quantidade;
+            pedidos.add({
+              pedido : valor
+            });
+
+            FirebaseFirestore.instance.collection('restaurantes').doc(uid).collection('estatistica').doc(dataFormatada).set({
+              'data' : DateTime.now(),
+              'pedidos' : pedidos
+            });
+
+          }else{
+            print('não contem o pedido na lista');
+            pedidos.add({
+              pedido : quantidade
+            });
+            FirebaseFirestore.instance.collection('restaurantes').doc(uid).collection('estatistica').doc(dataFormatada).set({
+              'data' : DateTime.now(),
+              'pedidos' : pedidos
+            });
+          }
+      }else{
+        print('+++ ' + 'igual a nulo');
+        print('não contem o pedido na lista');     
+         pedidos.add({
+          pedido : quantidade
+        });
+         FirebaseFirestore.instance.collection('restaurantes').doc(uid).collection('estatistica').doc(dataFormatada).set({
+          'data' : DateTime.now(),
+          'pedidos' : pedidos
+        });
+      } 
   }
 }

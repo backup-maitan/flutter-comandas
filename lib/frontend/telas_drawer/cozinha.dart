@@ -1,9 +1,11 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:comandas/backend/objetos/pedidoObjeto.dart';
 import 'package:comandas/backend/scopedModel/usuarioModel.dart';
 import 'package:comandas/frontend/widgets/cardPedido.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class Cozinha extends StatefulWidget {
   @override
@@ -11,6 +13,20 @@ class Cozinha extends StatefulWidget {
 }
 
 class _CozinhaState extends State<Cozinha> {
+
+  AudioPlayer audioPlayer = AudioPlayer();
+  AudioCache audioCache = AudioCache(prefix: "audios/");
+
+  executar()async{
+    audioPlayer = await audioCache.play("som.mp3");
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
    return ScopedModelDescendant<UsuarioModel>(
@@ -25,6 +41,7 @@ class _CozinhaState extends State<Cozinha> {
               if(!snapshot.hasData){
                 return Container();
               }else{
+                executar();
                 QuerySnapshot querySnapshot = snapshot.data;
                 List<PedidoObjeto> pedidosListaObjetos = List<PedidoObjeto>();
                 for(DocumentSnapshot documentSnapshot in querySnapshot.docs){
